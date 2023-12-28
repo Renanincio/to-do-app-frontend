@@ -4,23 +4,11 @@ export const TasksContainer = styled.div`
 min-height: 100vh;
 padding: 24px 32px;
 width: 80%;
-`
-
-export const HeaderTasks = styled.header`
-width: 100%;
-
-input {
-    height: 50px;
-    border-radius: 24px;
-    padding: 12px;
-    width: 450px;
-    background-color: #141E33;
-    color: white;
-}
+background-color: #0f172a;
 `
 
 export const TasksCards = styled.div`
-width: 900px;
+max-width: 900px;
 display: flex;
 flex-wrap: wrap;
 margin-top: 200px;

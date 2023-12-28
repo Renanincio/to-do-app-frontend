@@ -3,6 +3,8 @@ import { api } from "../../lib/server";
 import { CreateTaskCard, CreateTaskContainer } from "./style";
 import { useNavigate } from "react-router-dom";
 import { Data } from "../../services/types";
+import useAuthStore from "../../contexts/auth-context/UseAuthStore";
+import { useState } from "react";
 
 export const CreateTask = () => {
   const today = new Date().toISOString().split("T")[0];
@@ -19,9 +21,18 @@ export const CreateTask = () => {
     formState: { errors },
   } = useForm<Data>();
 
+  const { user } = useAuthStore();
+  const email = user?.email;
+
+ 
+
   const createTask = async (data: Data) => {
-    await api.post("/task", data);
-    navigate("/");
+    await api.post("/task", data, {
+      params: {
+        email,
+      }
+    });
+    navigate("/tasks");
   };
 
   return (

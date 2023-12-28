@@ -1,6 +1,6 @@
 export interface ITask {
   task: {
-    id: number;
+    id: string;
     title: string;
     description: string;
     date: string;
@@ -10,7 +10,7 @@ export interface ITask {
 }
 
 export type Task = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   date: string;
@@ -24,7 +24,7 @@ export type GetTaskResponse = {
 
 export type Data = {
   file: File;
-  id: number;
+  id: string;
   title: string;
   description: string;
   date: string;

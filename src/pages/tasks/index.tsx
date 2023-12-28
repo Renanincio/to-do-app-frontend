@@ -1,15 +1,30 @@
-import { TasksCard } from "../../components/taskcard";
-import { AddTaskCard, HeaderTasks, TasksCards, TasksContainer } from "./style";
-import { api } from "../../lib/server";
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { PageContainer } from "../../GlobalStyle";
+import { Menu } from "../../components/menu";
+import { TasksCard } from "../../components/taskcard";
+import useAuthStore from "../../contexts/auth-context/UseAuthStore";
+import { api } from "../../lib/server";
 import { Task } from "../../services/types";
-import { Link } from "react-router-dom";
+import { AddTaskCard, TasksCards, TasksContainer } from "./style";
 
 export const Tasks = () => {
   const [tasks, setTasks] = useState([]);
+  const token = Cookies.get("AccessToken");
+
+  const { user } = useAuthStore();
+  const email = user?.email;
 
   const getTasks = async () => {
-    const response = await api.get("/task");
+    const response = await api.get("/task", {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+      params: {
+        email,
+      },
+    });
 
     return setTasks(response.data);
   };
@@ -17,35 +32,36 @@ export const Tasks = () => {
   useEffect(() => {
     getTasks();
   }, []);
+  const navigate = useNavigate();
 
   return (
     <>
-      <TasksContainer>
-        <HeaderTasks>
-          <input type="text" placeholder="Pesquisar"></input>
-        </HeaderTasks>
+      <PageContainer>
+        <Menu />
+        <TasksContainer>
+          <TasksCards>
+            {tasks.length > 0 ? (
+              tasks.map((task: Task) => (
+                <TasksCard
+                  key={task.id}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  date={task.date}
+                  favorite={task.favorite}
+                  completed={task.completed}
+                />
+              ))
+            ) : (
+              <div>Não há tarefas</div>
+            )}
 
-        <TasksCards>
-          {tasks.length > 0 ? (
-            tasks.map((task: Task) => (
-              <TasksCard
-                key={task.id}
-                id={task.id}
-                title={task.title}
-                description={task.description}
-                date={task.date}
-                favorite={task.favorite}
-                completed={task.completed}
-              />
-            ))
-          ) : (
-            <div>Não há tarefas</div>
-          )}
-          <Link to="/create-task">
-            <AddTaskCard>Criar tarefa</AddTaskCard>
-          </Link>
-        </TasksCards>
-      </TasksContainer>
+            <AddTaskCard onClick={() => navigate("/create-task/")}>
+              Criar tarefa
+            </AddTaskCard>
+          </TasksCards>
+        </TasksContainer>
+      </PageContainer>
     </>
   );
 };

@@ -23,13 +23,13 @@ export const UpdateTask = () => {
     api
       .get(`/task/${id}`)
       .then((Response) => reset(Response.data))
-      .catch((error) => console.log(error));
   }, [id]);
 
   const preventDefault = (event: any) => event.preventDefault;
   const updateTask = async(data: Data) => {
     await api.put(`/task/${id}`, data);
-    navigate("/");
+    await navigate("/");
+    location.reload();
   };
 
   return (
@@ -38,7 +38,7 @@ export const UpdateTask = () => {
         <UpdateTaskCard>
           <form onSubmit={handleSubmit(updateTask, preventDefault)}>
             <legend>
-              <h1>Adicionar uma nova tarefa</h1>
+              <h1>Atualizar tarefa</h1>
             </legend>
 
             <label htmlFor="title">Título</label>
@@ -83,7 +83,7 @@ export const UpdateTask = () => {
               <label htmlFor="completed">Marcar como completa</label>
             </div>
 
-            <button type="submit">Adicionar nova tarefa</button>
+            <button type="submit">Atualizar tarefa</button>
           </form>
         </UpdateTaskCard>
       </UpdateTaskContainer>

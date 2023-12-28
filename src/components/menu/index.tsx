@@ -1,34 +1,38 @@
-import { MenuContainer, MenuLinks, UserContainer } from "./style";
-import UserImg from "../../public/images/pexels-photo-1674666.jpeg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../contexts/auth-context/UseAuthStore";
+import { LogoutButton, MenuContainer, MenuLinks, UserContainer } from "./style";
 
 export const Menu = () => {
+  const { logout, user } = useAuthStore();
+
+  const navigate = useNavigate();
+
   return (
     <>
       <MenuContainer>
         <UserContainer>
-          <p>Olá, John Doe</p>
-          <img src={UserImg} alt="foto de usuário"></img>
+          <p>Olá, {user?.name}</p>
         </UserContainer>
 
-        <button>
-          <Link to="/create-task" className="menu-link">
-            Criar Tarefa
-          </Link>
-        </button>
+        <LogoutButton onClick={() => {
+          logout()
+          navigate('/')
+        }}>Sair</LogoutButton>
 
         <MenuLinks>
-          <Link to="/" className="menu-link">
-            <li>Tarefas</li>
-          </Link>
+          <li className="menu-link" onClick={async() => {
+            await navigate("/")
+            location.reload()
+            }
+            }>Tarefas</li>
 
-          <Link to="/completed" className="menu-link">
-            <li>Completas</li>
-          </Link>
+          <li className="menu-link" onClick={() => navigate("/completed")}>
+            Completas
+          </li>
 
-          <Link to="/favorites" className="menu-link">
-            <li>Favoritas</li>
-          </Link>
+          <li className="menu-link" onClick={() => navigate("/favorites")}>
+            Favoritas
+          </li>
         </MenuLinks>
       </MenuContainer>
     </>

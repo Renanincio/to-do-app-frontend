@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../lib/server";
 import {
   CardOptions,
@@ -18,7 +19,7 @@ import {
 } from "react-icons/ai";
 
 interface TaskProps {
-  id?: number;
+  id?: string;
   title: string;
   description: string;
   date: string;
@@ -39,6 +40,8 @@ export const TasksCard = ({
     location.reload();
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <TaskCard>
@@ -57,11 +60,13 @@ export const TasksCard = ({
             <UncompletedCard>Incompleta</UncompletedCard>
           )}
           <CardOptions>
-            <Link to={`task/${id}`} className="cardLink">
-              <li>
-                <AiFillEdit />
-              </li>
-            </Link>
+            <li
+              className="cardLink"
+              onClick={() => navigate(`/update-task/${id}`)}
+            >
+              <AiFillEdit />
+            </li>
+
             <button onClick={() => deleteTask(id)}>
               <li>
                 <AiFillDelete />
