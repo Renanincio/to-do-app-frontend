@@ -1,13 +1,17 @@
 import { styled } from "styled-components";
 
-export const LogoutButton = styled.button`
-border: none;
-    color: white;
-    background-color: none;
-    cursor: pointer;
-`
+type MenuVisible = {
+  menu: boolean;
+};
 
-export const MenuContainer = styled.div`
+export const LogoutButton = styled.button`
+  border: none;
+  color: white;
+  background-color: none;
+  cursor: pointer;
+`;
+
+export const MenuContainer = styled.div<MenuVisible>`
   min-width: 300px;
   min-height: 100vh;
   background-color: #141e33;
@@ -33,8 +37,9 @@ export const MenuContainer = styled.div`
     background-color: #4c1d95;
   }
 
-  @media (max-width: 768px){
-      
+  @media (max-width: 768px) {
+    margin-left: ${(props) => (props.menu ? "0" : "-300px")};
+    transition: all 0.3s;
   }
 `;
 
@@ -86,3 +91,11 @@ export const MenuLinks = styled.ul`
   }
 `;
 
+export const MenuButton = styled.button`
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  background-color: #141e33;
+  color: white;
+  margin: 16px;
+`;

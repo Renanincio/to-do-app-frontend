@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../contexts/auth-context/UseAuthStore";
-import { LogoutButton, MenuContainer, MenuLinks, UserContainer } from "./style";
+import { LogoutButton, MenuButton, MenuContainer, MenuLinks, UserContainer } from "./style";
+import { useState } from "react";
+import { MdMenuOpen } from "react-icons/md";
 
 export const Menu = () => {
   const { logout, user } = useAuthStore();
 
   const navigate = useNavigate();
 
+  const [menuActivate, setMenuActivate] = useState(false);
+
   return (
     <>
-      <MenuContainer>
+      <MenuContainer menu={menuActivate}>
         <UserContainer>
           <p>Olá, {user?.name}</p>
         </UserContainer>
@@ -35,6 +39,9 @@ export const Menu = () => {
           </li>
         </MenuLinks>
       </MenuContainer>
+      <MenuButton onClick={() => setMenuActivate(!menuActivate)}>
+      <MdMenuOpen />
+      </MenuButton>
     </>
   );
 };

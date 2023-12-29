@@ -53,4 +53,23 @@ export const UpdateTaskCard = styled.div`
   button:hover {
     background-color: #4c1d95;
   }
+
+  @media (max-width: 640px){
+    min-width: 270px;
+    min-height: 70vh;
+    padding: 12px;
+
+      form{
+        width: 270px;
+        gap: 28px;
+      }
+
+      form legend h1{
+        font-size: 18px;
+      }
+
+      form label {
+        font-size: 14px;
+      }
+  }
 `;
