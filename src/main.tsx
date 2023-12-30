@@ -1,22 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
 import {
-  BrowserRouter,
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
-import { Tasks } from './pages/tasks/index.tsx'
-import { SignIn } from './pages/sigIn/index.tsx'
-import { Favorites } from './pages/favorites/index.tsx'
-import { CreateTask } from './pages/create-tasks/index.tsx'
-import { UpdateTask } from './pages/update-task/index.tsx'
-import { NotFound } from './pages/notFound/index.tsx'
-import AuthProvider from './contexts/auth-context/AuthProvider.tsx';
+import App from './App.tsx';
 import { ProtectedRoute } from './components/protectedRoutes/index.tsx';
-import { Home } from './pages/home/index.tsx';
-import { Register } from './pages/register/index.tsx';
+import AuthProvider from './contexts/auth-context/AuthProvider.tsx';
 import { Completed } from './pages/completed/index.tsx';
+import { CreateTask } from './pages/create-tasks/index.tsx';
+import { Favorites } from './pages/favorites/index.tsx';
+import { Home } from './pages/home/index.tsx';
+import { NotFound } from './pages/notFound/index.tsx';
+import { Register } from './pages/register/index.tsx';
+import { SignIn } from './pages/sigIn/index.tsx';
+import { Tasks } from './pages/tasks/index.tsx';
+import { UpdateTask } from './pages/update-task/index.tsx';
 
 const routes = createBrowserRouter([
   {

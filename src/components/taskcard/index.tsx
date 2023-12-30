@@ -1,4 +1,9 @@
-import { Link } from "react-router-dom";
+import {
+  AiFillDelete,
+  AiFillEdit,
+  AiFillStar,
+  AiOutlineStar,
+} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../lib/server";
 import {
@@ -11,15 +16,9 @@ import {
   TaskCardText,
   UncompletedCard,
 } from "./style";
-import {
-  AiFillEdit,
-  AiFillDelete,
-  AiOutlineStar,
-  AiFillStar,
-} from "react-icons/ai";
 
 interface TaskProps {
-  id?: string;
+  id?: any;
   title: string;
   description: string;
   date: string;

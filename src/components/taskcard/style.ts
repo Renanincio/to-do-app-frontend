@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import  styled  from "styled-components";
 
 export const TaskCard = styled.div`
   min-width: 256px;

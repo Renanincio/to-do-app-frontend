@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
-import { api } from "../../lib/server";
-import { CreateTaskCard, CreateTaskContainer } from "./style";
 import { useNavigate } from "react-router-dom";
-import { Data } from "../../services/types";
 import useAuthStore from "../../contexts/auth-context/UseAuthStore";
-import { useState } from "react";
+import { api } from "../../lib/server";
+import { Data } from "../../services/types";
+import { CreateTaskCard, CreateTaskContainer } from "./style";
 
 export const CreateTask = () => {
   const today = new Date().toISOString().split("T")[0];
@@ -15,22 +14,16 @@ export const CreateTask = () => {
     event.preventDefault();
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Data>();
+  const { register, handleSubmit } = useForm<Data>();
 
   const { user } = useAuthStore();
   const email = user?.email;
-
- 
 
   const createTask = async (data: Data) => {
     await api.post("/task", data, {
       params: {
         email,
-      }
+      },
     });
     navigate("/tasks");
   };
@@ -47,7 +40,6 @@ export const CreateTask = () => {
             <label htmlFor="title">Título</label>
             <input
               type="text"
-              name="title"
               required
               placeholder="Digite o título da tarefa"
               {...register("title")}
@@ -55,34 +47,19 @@ export const CreateTask = () => {
             <label htmlFor="description">Descrição</label>
             <input
               type="text"
-              name="description"
               required
               placeholder="Digite a descrição da tarefa"
               {...register("description")}
             />
             <label htmlFor="date">Data</label>
-            <input
-              type="date"
-              min={today}
-              name="date"
-              {...register("date")}
-              required
-            />
+            <input type="date" min={today} {...register("date")} required />
 
             <div>
-              <input
-                type="checkbox"
-                name="favorite"
-                {...register("favorite")}
-              />
+              <input type="checkbox" {...register("favorite")} />
               <label htmlFor="favorite">Marcar como favorita</label>
             </div>
             <div>
-              <input
-                type="checkbox"
-                name="completed"
-                {...register("completed")}
-              />
+              <input type="checkbox" {...register("completed")} />
               <label htmlFor="completed">Marcar como completa</label>
             </div>
 

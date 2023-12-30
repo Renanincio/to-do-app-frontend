@@ -13,7 +13,6 @@ export const UpdateTask = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
   } = useForm<Data>();
 
@@ -44,7 +43,7 @@ export const UpdateTask = () => {
             <label htmlFor="title">Título</label>
             <input
               type="text"
-              name="title"
+
               required
               placeholder="Digite o título da tarefa"
               {...register("title")}
@@ -52,7 +51,7 @@ export const UpdateTask = () => {
             <label htmlFor="description">Descrição</label>
             <input
               type="text"
-              name="description"
+              
               required
               placeholder="Digite a descrição da tarefa"
               {...register("description")}
@@ -61,7 +60,7 @@ export const UpdateTask = () => {
             <input
               type="date"
               min={today}
-              name="date"
+              
               {...register("date")}
               required
             />
@@ -69,7 +68,7 @@ export const UpdateTask = () => {
             <div>
               <input
                 type="checkbox"
-                name="favorite"
+                
                 {...register("favorite")}
               />
               <label htmlFor="favorite">Marcar como favorita</label>
@@ -77,7 +76,7 @@ export const UpdateTask = () => {
             <div>
               <input
                 type="checkbox"
-                name="completed"
+                
                 {...register("completed")}
               />
               <label htmlFor="completed">Marcar como completa</label>

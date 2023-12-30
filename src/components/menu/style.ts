@@ -1,7 +1,7 @@
-import { styled } from "styled-components";
+import  styled  from "styled-components";
 
 type MenuVisible = {
-  menu: boolean;
+  sidebar: boolean;
 };
 
 export const LogoutButton = styled.button`
@@ -38,7 +38,7 @@ export const MenuContainer = styled.div<MenuVisible>`
   }
 
   @media (max-width: 768px) {
-    margin-left: ${(props) => (props.menu ? "0" : "-300px")};
+    margin-left: ${(props) => (props.sidebar ? "0" : "-300px")};
     transition: all 0.3s;
   }
 `;

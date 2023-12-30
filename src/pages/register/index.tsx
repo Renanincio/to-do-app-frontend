@@ -19,11 +19,10 @@ export const Register = () => {
 
   const {
     register,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm<IRegister>();
 
-  const { signup, error } = useAuthStore();
+  const { signup } = useAuthStore();
 
   const Register = async (data: IRegister) => {
     await signup(data);

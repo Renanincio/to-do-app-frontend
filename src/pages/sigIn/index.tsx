@@ -19,10 +19,9 @@ export const SignIn = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<ILogin>();
 
-  const { login, error } = useAuthStore();
+  const { login } = useAuthStore();
 
   const Login = async (data: ILogin) => {
     await login(data);

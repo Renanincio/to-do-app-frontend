@@ -9,11 +9,11 @@ export const Menu = () => {
 
   const navigate = useNavigate();
 
-  const [menuActivate, setMenuActivate] = useState(false);
+  const [sideBar, setSideBar] = useState(false);
 
   return (
     <>
-      <MenuContainer menu={menuActivate}>
+      <MenuContainer sidebar={sideBar}>
         <UserContainer>
           <p>Olá, {user?.name}</p>
         </UserContainer>
@@ -39,7 +39,7 @@ export const Menu = () => {
           </li>
         </MenuLinks>
       </MenuContainer>
-      <MenuButton onClick={() => setMenuActivate(!menuActivate)}>
+      <MenuButton onClick={() => setSideBar(!sideBar)}>
       <MdMenuOpen />
       </MenuButton>
     </>
