@@ -16,8 +16,10 @@ import { useEffect } from "react";
 export const Home = () => {
   const navigate = useNavigate();
 
+  const { isAuthenticated } = useAuthStore();
+
   useEffect(() => {
-    const { isAuthenticated } = useAuthStore();
+    
     if (isAuthenticated) return navigate("/tasks");
   }, []);
 
