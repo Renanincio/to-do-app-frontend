@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../../lib/server";
 
